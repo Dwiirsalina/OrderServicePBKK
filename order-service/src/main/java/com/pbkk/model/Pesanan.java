@@ -9,12 +9,12 @@ public class Pesanan {
 	private Integer status;
 	private String catatan;
 	
-	@ManyToMany
-	@JoinTable
-		name="menu_like",
-		joinColumns = @JoinColumn(name = "idpesanan"),
-		inverseJoinColumns = @JoinColumn(name = "idmenu")
-	Set<Menu> likedMenus;
+//	@ManyToMany
+//	@JoinTable
+//		name="menu_like",
+//		joinColumns = @JoinColumn(name = "idpesanan"),
+//		inverseJoinColumns = @JoinColumn(name = "idmenu")
+//	Set<Menu> likedMenus;
 	
 	public Integer getIdpesanan() {
 		return idpesanan;

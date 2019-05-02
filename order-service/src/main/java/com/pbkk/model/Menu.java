@@ -8,9 +8,9 @@ public class Menu {
 	private String detilmenu;
 	private Integer hargamenu;
 	private Integer stockmenu;
-	
-	@ManyToMany
-	Set<Pesanan> likes;
+//	
+//	@ManyToMany
+//	Set<Pesanan> likes;
 	
 	public Integer getIdmenu() {
 		return idmenu;
