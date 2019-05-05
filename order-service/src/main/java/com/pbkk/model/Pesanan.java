@@ -46,5 +46,14 @@ public class Pesanan {
 	public void setCatatan(String catatan) {
 		this.catatan = catatan;
 	}
+	public Pesanan(Integer idpesanan, String alamatpengantaran, Integer totalharga, Integer status, String catatan) {
+		this.idpesanan = idpesanan;
+		this.alamatpengantaran = alamatpengantaran;
+		this.totalharga = totalharga;
+		this.status = status;
+		this.catatan = catatan;
+	}
+	
+	
 
 }

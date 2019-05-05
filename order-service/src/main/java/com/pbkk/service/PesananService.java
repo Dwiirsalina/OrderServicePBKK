@@ -1,7 +1,6 @@
 package com.pbkk.service;
 
-public interface Pesanan {
+public interface PesananService {
 	void buatPesanan(Integer idpesanan, String alamatpengantaran, Integer totalharga, Integer status, String catatan);
-	void perbaruiStatusPesanan(Integer idpesanan, Integer status);
-	
+	void perbaruiPesanan(Integer idpesanan, Integer status);
 }
