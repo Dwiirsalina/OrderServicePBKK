@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,41 +19,47 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-@Table(name="order")
+@Table(name="order_table")
 public class Order {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name ="order_id")
 	private Integer order_id;
-	
+	@Column(name ="customer_id")
 	private Integer customer_id;
+	@Column(name ="deals_id")
 	private Integer deals_id;
 	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd@HH:mm:ss.SSSZ")
-	private Date order_created = new Date();
-	
+//	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd@HH:mm:ss.SSSZ")
+	@Column(name = "order_created")
+	private Date order_created;
+	@Column(name ="order_status")
 	private Integer order_status;
+	@Column(name ="delivery_address")
 	private String delivery_address;
+	@Column(name ="order_note")
 	private String order_note;
 	
-	@JsonManagedReference
-    @OneToMany(mappedBy = "order")
-	@Valid
-    private List<OrderMenu> orderMenus = new ArrayList<>();
+//	@JsonManagedReference
+//    @OneToMany(mappedBy = "order")
+//	@Valid
+//    private List<OrderMenu> orderMenus = new ArrayList<>();
+	
+//	@Transient
+//	public Double getTotalOrderPrice() {
+//		double sum = 0;
+//		List<OrderMenu> orderMenus = getOrderMenus();
+//			for (OrderMenu om : orderMenus) {
+//				sum += om.getTotalPrice();
+//			}
+//		return sum;
+//	}
+
 	
 	@Transient
-	public Double getTotalOrderPrice() {
-		double sum = 0;
-		List<OrderMenu> orderMenus = getOrderMenus();
-			for (OrderMenu om : orderMenus) {
-				sum += om.getTotalPrice();
-			}
-		return sum;
-	}
-	
-	@Transient
-	public int getNumberOfMenus() {
-		return this.orderMenus.size();
-	}
+//	public int getNumberOfMenus() {
+//		return this.orderMenus.size();
+//	}
 	
 	public Integer getOrder_id() {
 		return order_id;
@@ -97,8 +104,16 @@ public class Order {
 		this.order_note = order_note;
 	}
 
+//	public List<OrderMenu> getOrderMenus() {
+//		return orderMenus;
+//	}
+//
+//	public void setOrderMenus(List<OrderMenu> orderMenus) {
+//		this.orderMenus = orderMenus;
+//	}
+
 	public Order(Integer order_id, Integer customer_id, Integer deals_id, Date order_created, Integer order_status,
-			String delivery_address, String order_note, @Valid List<OrderMenu> orderMenus) {
+			String delivery_address, String order_note) {
 		super();
 		this.order_id = order_id;
 		this.customer_id = customer_id;
@@ -107,7 +122,16 @@ public class Order {
 		this.order_status = order_status;
 		this.delivery_address = delivery_address;
 		this.order_note = order_note;
-		this.orderMenus = orderMenus;
+//		this.orderMenus = orderMenus;
 	}
+	
+	public Order() {
+		
+	}
+	
+	public Order(Integer order_id) {
+		this.order_id = order_id;
+	}
+	
 	
 }

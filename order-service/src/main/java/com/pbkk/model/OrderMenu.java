@@ -10,10 +10,10 @@ import javax.persistence.Table;
 import org.springframework.data.annotation.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.pbkk.service.OrderMenuId;
+import com.pbkk.service.OrderMenuService;
 
 @Entity
-@Table(name="order_menu")
+@Table(name="order_menu_table")
 public class OrderMenu {
 	private Integer order_id;
 	private Integer menu_id;
@@ -23,7 +23,7 @@ public class OrderMenu {
 	
 	@EmbeddedId
 	@JsonIgnore
-	private OrderMenuId order_menu_id;
+	private Integer order_menu_id;
 	
 	public Integer getOrder_id() {
 		return order_id;
@@ -43,29 +43,29 @@ public class OrderMenu {
 	public void setOrder_menu_quantity(Integer order_menu_quantity) {
 		this.order_menu_quantity = order_menu_quantity;
 	}
-	public OrderMenu(Integer order_id, Integer menu_id, Integer order_menu_quantity, OrderMenuId order_menu_id) {
+	public OrderMenu(Integer order_id, Integer menu_id, Integer order_menu_quantity, Integer order_menu_id) {
 		super();
 		this.order_id = order_id;
 		this.menu_id = menu_id;
 		this.order_menu_quantity = order_menu_quantity;
 		this.order_menu_id = order_menu_id;
 	}
-	public OrderMenu(Order order, Menu menu, Integer order_menu_quantity) {
-        order_menu_id = new OrderMenuId();
-        order_menu_id.setOrder(order);
-        order_menu_id.setMenu(menu);
-        this.order_menu_quantity = order_menu_quantity;
-    }
-	
-	@Transient
-    public Menu getMenu() {
-        return this.order_menu_id.getMenu();
-    }
+//	public OrderMenu(Order order, Menu menu, Integer order_menu_quantity) {
+//        order_menu_id = new OrderMenuId();
+//        order_menu_id.setOrder(order);
+//        order_menu_id.setMenu(menu);
+//        this.order_menu_quantity = order_menu_quantity;
+//    }
+//	
+//	@Transient
+//    public Menu getMenu() {
+//        return this.order_menu_id.getMenu();
+//    }
  
-    @Transient
-    public Double getTotalPrice() {
-        return getMenu().getPrice() * getOrder_menu_quantity();
-    }
+//    @Transient
+//    public Double getTotalPrice() {
+//        return getMenu().getPrice() * getOrder_menu_quantity();
+//    }
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -104,3 +104,4 @@ public class OrderMenu {
     
     
 }
+
